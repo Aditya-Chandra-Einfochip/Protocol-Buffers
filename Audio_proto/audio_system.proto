@@ -1,0 +1,34 @@
+syntax = "proto2";  // Switch from proto3 to proto2
+
+message ConnectionDetails {
+    required int32 device_id = 1;
+    optional string device_name = 2;
+    required bool is_connected = 3;
+    optional uint32 ip_address = 4;
+}
+
+message AudioTrack {
+    required int32 track_id = 1;
+    optional string track_name = 2;
+    required float duration = 3;
+    required int32 sample_rate = 4;
+}
+
+message AudioControl {
+    required int32 volume_level = 1;
+    optional bool is_muted = 2;
+    optional bytes equalizer_bitmap = 3;
+}
+
+message DeviceInfo {
+    required int32 device_id = 1;
+    optional string manufacturer = 2;
+    repeated string supported_formats = 3;
+}
+
+message AudioSystem {
+    required ConnectionDetails connection = 1;
+    repeated AudioTrack playlist = 2;
+    required AudioControl control = 3;
+    optional DeviceInfo device_info = 4;
+}
